@@ -4,8 +4,19 @@ import numpy as np
 import os
 import uuid
 
+__locations = None
+__data_columns = None
+__model = None
 
-def get_estimated(location, sqft, bhk, bth):
+
+def detect_disease(file, upload_folder):
+    # extension = os.path.splitext(file.filename)[1]
+    f_name = str(uuid.uuid4()) + '_' + file.filename
+    file.save(os.path.join(upload_folder, f_name))
+    return f_name
+
+
+def get_estimation(location, sqft, bhk, bth):
     try:
         loc_index = __data_columns.index(location.lower())
     except:
@@ -36,7 +47,7 @@ def load_saved_artifacts():
         __locations = __data_columns[3:]
 
     global __model
-    with open("./artifacts/banglore_home_prices_model.pickle", 'rb') as f:
+    with open("./artifacts/cnn_model.pickle", 'rb') as f:
         __model = pickle.load(f)
     print("Loading saved artifacts... done")
 
@@ -44,3 +55,7 @@ def load_saved_artifacts():
 if __name__ == '__main__':
     load_saved_artifacts()
     print(get_location_names())
+    print(get_estimation("", 1000, 3, 3))
+    print(get_estimation("1st Phase", 1000, 2, 2))
+    print(get_estimation("", 1000, 2, 2))
+    print(get_estimation("", 1000, 2, 2))

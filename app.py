@@ -22,7 +22,10 @@ def detect():
     response = jsonify({
         'result': {
             'filename': detect_disease(file, folder),
-            'flowerName': 'Ross'
+            'flowerName': 'Ross',
+            'identifiedDisease': 'Black spot',
+            'diseaseDescription': '',
+            'accuracyLevel': 50.0
         }
     })
 
@@ -30,6 +33,12 @@ def detect():
 
     return response
 
+
+@app.route('/api/v1.0/transfer', methods=['POST'])
+def transfer():
+    text = request.data
+    print(text)
+    return "Success!"
 
 if __name__ == "__main__":
     app.run("192.168.1.4")
