@@ -23,9 +23,10 @@ def detect():
         'result': {
             'filename': detect_disease(file, folder),
             'flowerName': 'Ross',
-            'identifiedDisease': 'Black spot',
-            'diseaseDescription': '',
-            'accuracyLevel': 50.0
+            'identifiedDisease': 'Botrytis',
+            'diseaseDescription': 'Botrytis is a fungas disease creating devastating losses for ornamental plants. '
+                                  'Botrytis thrives in cool, humid weather.',
+            'accuracyLevel': 51.02
         }
     })
 
@@ -40,6 +41,7 @@ def transfer():
     print(text)
     return "Success!"
 
+
 if __name__ == "__main__":
-    app.run("192.168.1.4")
+    app.run("192.168.1.2")
 
