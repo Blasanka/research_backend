@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 # import engine
-import os
 from disease.util import detect_disease
 
 
@@ -20,14 +19,7 @@ def detect():
     folder = app.config['UPLOAD_FOLDER']
 
     response = jsonify({
-        'result': {
-            'filename': detect_disease(file, folder),
-            'flowerName': 'Ross',
-            'identifiedDisease': 'Botrytis',
-            'diseaseDescription': 'Botrytis is a fungas disease creating devastating losses for ornamental plants. '
-                                  'Botrytis thrives in cool, humid weather.',
-            'accuracyLevel': 51.02
-        }
+        'result': detect_disease(file, folder),
     })
 
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -43,5 +35,5 @@ def transfer():
 
 
 if __name__ == "__main__":
-    app.run("192.168.1.2")
+    app.run(use_reloader=False)
 

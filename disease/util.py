@@ -1,61 +1,62 @@
 import json
-import pickle
-import numpy as np
 import os
 import uuid
 
-__locations = None
+# Image processing
+import numpy as np
+from keras.preprocessing import image
+import keras as ker
+
+__available_diseases = None
 __data_columns = None
 __model = None
 
 
 def detect_disease(file, upload_folder):
-    # extension = os.path.splitext(file.filename)[1]
+    # Saving upload file for future use
     f_name = str(uuid.uuid4()) + '_' + file.filename
     file.save(os.path.join(upload_folder, f_name))
-    return f_name
 
+    cnn_model = ker.models.load_model("disease/flower_disease_cnn.h5")
+    cnn_model.summary()
 
-def get_estimation(location, sqft, bhk, bth):
-    try:
-        loc_index = __data_columns.index(location.lower())
-    except:
-        loc_index = -1
+    predict_image = image.load_img('uploads\\'+f_name, target_size=(64, 64, 1))
+    predict_image = image.img_to_array(predict_image)
+    predict_image = np.expand_dims(predict_image, axis=-1)
+    predict_image = predict_image.reshape(-1, 64, 64, 1)
+    predicted_result = cnn_model.predict(predict_image)
+    output = predicted_result[0]
 
-    x = np.zeros(len(__data_columns))
-    x[0] = sqft
-    x[1] = bth
-    x[2] = bhk
+    if output[0] <= 0.5:
+        disease_name = "Powdery Mildow"
+        disease_description = "Powdery Mildow is a fungas disease creating devastating losses for ornamental plants. " \
+                              "Powdery Mildow thrives in cool, humid weather."
+    else:
+        disease_name = "Healthy"
+        disease_description = ""
 
-    if loc_index >= 0:
-        x[loc_index] = 1
+    prediction = output
+    print(prediction)
 
-    return round(__model.predict([x])[0], 2)
+    return {
+            'filename': f_name,
+            'flowerName': 'Ross',
+            'identifiedDisease': disease_name,
+            'diseaseDescription': disease_description,
+            'accuracyLevel': 51.02
+        }
 
 
 def get_location_names():
-    return __locations
+    return __available_diseases
 
 
 def load_saved_artifacts():
     print("Loading saved artificats... start")
     global __data_columns
-    global __locations
+    global __available_diseases
 
-    with open("./artifacts/columns.json", 'r') as f:
+    with open("./artifacts/available_dieases.json", 'r') as f:
         __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns[3:]
-
-    global __model
-    with open("./artifacts/cnn_model.pickle", 'rb') as f:
-        __model = pickle.load(f)
+        __available_diseases = __data_columns[3:]
     print("Loading saved artifacts... done")
-
-
-if __name__ == '__main__':
-    load_saved_artifacts()
-    print(get_location_names())
-    print(get_estimation("", 1000, 3, 3))
-    print(get_estimation("1st Phase", 1000, 2, 2))
-    print(get_estimation("", 1000, 2, 2))
-    print(get_estimation("", 1000, 2, 2))
