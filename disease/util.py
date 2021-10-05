@@ -29,7 +29,7 @@ def detect_disease(file, upload_folder):
 
     if output[0] <= 0.5:
         disease_name = "Powdery Mildow"
-        disease_description = "Powdery Mildow is a fungas disease creating devastating losses for ornamental plants. " \
+        disease_description = "Powdery Mildow is a fungas disease creating devastating losses. " \
                               "Powdery Mildow thrives in cool, humid weather."
     else:
         disease_name = "Healthy"
