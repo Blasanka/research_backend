@@ -12,7 +12,6 @@ import os
 class_dir_path = f'C:/Users/BLiyanage/Downloads/notebooks/flower_disease_CNN/dataset'
 
 
-
 # Training data resize
 
 if not "training_samples" in os.listdir(class_dir_path):
@@ -31,7 +30,7 @@ for i in range(6):
     
     # If there is no class label directory, create one
     dir_path = f'{class_dir_path}/training_samples'
-    if not f"{dir_path}/{i}" in os.listdir(dir_path):
+    if not f"{i}" in os.listdir(dir_path):
         os.mkdir(f"{dir_path}/{i}")
     
     # Resize all training images and save to relevant class labeled directory

@@ -12,6 +12,8 @@ Data augmentation procedure:
 
 6) Run image_augmentation.py to augment all images with augmentation techniques such as rotate, flip, zoom, and etc.
 
+7) Run image_rename_script.py to rename all images by count o to n
+
 
 All of the above step applied dataset
 and pure dataset can be found here:
