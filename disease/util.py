@@ -31,7 +31,7 @@ def detect_disease(file, upload_folder):
     # predicted_result = cnn_model.predict(predict_image)
     # predicted_class = cnn_model.predict_classes(predict_image)
 
-    predict_image = image.load_img('uploads\\'+f_name, target_size=(64, 64))
+    predict_image = image.load_img(os.path.join(upload_folder, f_name), target_size=(64, 64))
     predict_image = image.img_to_array(predict_image)
     predict_image = np.expand_dims(predict_image, axis=-0)
     predicted_result = cnn_model.predict(predict_image)
