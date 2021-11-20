@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 # import engine
-from disease.util import detect_disease
-
+from disease.util import detect_disease, delete_uploads
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -27,6 +26,19 @@ def detect():
     return response
 
 
+@app.route('/api/v1.0/uploads/<name>', methods=['DELETE'])
+def delete_uploaded_file(name):
+    folder = app.config['UPLOAD_FOLDER']
+
+    response = jsonify({
+        'result': delete_uploads(folder, name),
+    })
+
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
+
+
 @app.route('/api/v1.0/transfer', methods=['POST'])
 def transfer():
     text = request.data
@@ -35,5 +47,4 @@ def transfer():
 
 
 if __name__ == "__main__":
-    app.run(host="192.168.1.4", use_reloader=False)
-
+    app.run(host="flower-disease-cnn.herokuapp.com", use_reloader=False)

@@ -80,6 +80,9 @@ def detect_disease(file, upload_folder):
         flower_name = "No name"
         prediction = output[3]
 
+    # temporary delete uploaded file after prediction success to avoid Heroku slug size exceed
+    delete_uploaded_file(upload_folder, f_name)
+
     return {
             'filename': f_name,
             'flowerName': flower_name,
@@ -87,6 +90,14 @@ def detect_disease(file, upload_folder):
             'diseaseDescription': disease_description,
             'accuracyLevel': str(prediction)
         }
+
+
+def delete_uploads(upload_folder, name):
+    try:
+        os.remove(os.path.join(upload_folder, name))
+    except OSError:
+        pass
+    return "Done!"
 
 
 def get_location_names():
