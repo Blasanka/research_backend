@@ -4,7 +4,7 @@ __pycache__
 
 *.pyc
 
-uploads/*
+/uploads/*
 
 disease/flower_disease_CNN
 disease/__pycache__
