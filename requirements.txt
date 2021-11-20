@@ -1,4 +1,4 @@
 Flask==1.1.2
 gunicorn
-keras
+tensorflow-cpu=2.5.0
 numpy==1.19.2
