@@ -31,7 +31,7 @@ def detect():
 def transfer():
     text = request.data
     print(text)
-    return "Success!"
+    return "Success! " + str(text)
 
 
 if __name__ == "__main__":
