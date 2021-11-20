@@ -81,7 +81,7 @@ def detect_disease(file, upload_folder):
         prediction = output[3]
 
     # temporary delete uploaded file after prediction success to avoid Heroku slug size exceed
-    delete_uploaded_file(upload_folder, f_name)
+    delete_uploads(upload_folder, f_name)
 
     return {
             'filename': f_name,
