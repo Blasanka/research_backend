@@ -20,6 +20,9 @@ def detect_disease(file, upload_folder):
     cnn_model = ker.models.load_model("disease/artifacts/flower_disease_cnn.h5")
     cnn_model.summary()
 
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
+    
     predict_image = image.load_img('uploads\\'+f_name, target_size=(64, 64, 1))
     predict_image = image.img_to_array(predict_image)
     predict_image = np.expand_dims(predict_image, axis=-1)
