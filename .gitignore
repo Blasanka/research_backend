@@ -9,4 +9,3 @@ uploads/*
 disease/flower_disease_CNN
 disease/__pycache__
 disease/artifacts/flower_disease_cnn_v1.h5
-disease/artifacts/flower_disease_cnn_v3.h5
