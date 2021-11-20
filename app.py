@@ -35,5 +35,5 @@ def transfer():
 
 
 if __name__ == "__main__":
-    app.run(host="192.168.1.3", use_reloader=False)
+    app.run(host="https://flower-disease-cnn.herokuapp.com", use_reloader=False)
 
