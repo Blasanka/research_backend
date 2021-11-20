@@ -4,8 +4,8 @@ import uuid
 
 # Image processing
 import numpy as np
-from keras.preprocessing import image
-import keras as ker
+from tensorflow.keras.preprocessing import image
+import tensorflow.keras as ker
 
 __available_diseases = None
 __data_columns = None
