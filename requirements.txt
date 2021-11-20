@@ -1,10 +1,10 @@
-Flask= 1.1.2
+Flask==1.1.2
 gunicorn
-Jinja2=2.11.2
-keras-preprocessing=1.1.2
-numpy=1.19.2
-requests=2.24.0
-tensorboard=2.5.0
-tensorflow=2.5.0
-tqdm=4.50.2
-urllib3=1.25.11
+Jinja2==2.11.2
+keras
+numpy==1.19.2
+requests==2.24.0
+tensorboard==2.5.0
+tensorflow==2.5.0
+tqdm==4.50.2
+urllib3==1.25.11
