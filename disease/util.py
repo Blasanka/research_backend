@@ -26,8 +26,10 @@ def detect_disease(file, upload_folder):
     predict_image = predict_image.reshape(-1, 64, 64, 1)
     predicted_result = cnn_model.predict(predict_image)
     predicted_class = cnn_model.predict_classes(predict_image)
+    
     print(predicted_class)
     print(predicted_result)
+    
     output = predicted_result[0]
 
     if predicted_result[0][0] == 0:

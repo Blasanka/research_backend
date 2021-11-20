@@ -1,6 +1,7 @@
 Flask==1.1.2
 gunicorn
 keras
+tensorflow=2.5.0
 numpy==1.19.2
 requests==2.24.0
 tqdm==4.50.2
