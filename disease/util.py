@@ -78,7 +78,7 @@ def detect_disease(file, upload_folder):
         disease_name = "Could not identify"
         disease_description = "Please try again"
         flower_name = "No name"
-        prediction = output[3]
+        prediction = 0.0
 
     # temporary delete uploaded file after prediction success to avoid Heroku slug size exceed
     delete_uploads(upload_folder, f_name)
