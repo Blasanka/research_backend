@@ -68,7 +68,7 @@ def detect_disease(file, upload_folder):
         disease_description = "Tissue between leaf veins become yellow, then brown, giving diseased leaves a mottled " \
                               "appearance. "
         flower_name = "Sunflower"
-        prediction = output[5]
+        prediction = output[4]
     elif output[0][5] >= 0.8:
         disease_name = "Root Rot"
         disease_description = "The infected plants show drooping of leaves and death occurs in patches."
