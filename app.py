@@ -39,6 +39,22 @@ def delete_uploaded_file(name):
     return response
 
 
+@app.route('/api/v1.0/disease-help', methods=['POST'])
+def get_guidance():
+    data = request.data
+
+    response = jsonify({
+        'id': 1,
+        'preventionGuide': "Reflect sunlight to affected plants",
+        'stepsToPrevent': "1. Separate affected plants from others",
+        'solutions': "Since the disease spread rapidly cutting and burning affected once advisable.",
+    })
+
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
+
+
 @app.route('/api/v1.0/transfer', methods=['POST'])
 def transfer():
     text = request.data
