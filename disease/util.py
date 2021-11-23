@@ -10,7 +10,6 @@ import keras as ker
 __available_diseases = None
 __data_columns = None
 __model = None
-__weight = 0.069
 
 
 def detect_disease(file, upload_folder):
@@ -47,34 +46,34 @@ def detect_disease(file, upload_folder):
         disease_name = "Rose healthy"
         disease_description = "Plant and flower is healthy"
         flower_name = "Rose"
-        prediction = (output[0] - __weight) * 100
+        prediction = output[0]
     elif predicted_class[0] == 1:
         disease_name = "Powdery Mildow"
         disease_description = "Powdery Mildow is a fungas disease creating devastating losses. " \
                               "Powdery Mildow thrives in cool, humid weather."
         flower_name = "Rose"
-        prediction = (output[1] - __weight) * 100
+        prediction = output[1]
     elif predicted_class[0] == 2:
         disease_name = "Botrytis"
         disease_description = "The fungus can invade and damage almost any plant part."
         flower_name = "Rose"
-        prediction = (output[2] - __weight) * 100
+        prediction = output[2]
     elif predicted_class[0] == 3:
         disease_name = "Sunflower healty"
         disease_description = "Plant and flower is healthy"
         flower_name = "Sunflower"
-        prediction = (output[3] - __weight) * 100
-    elif output[4] >= 0.8:
+        prediction = output[3]
+    elif predicted_class[0] == 4:
         disease_name = "Wilt"
         disease_description = "Tissue between leaf veins become yellow, then brown, giving diseased leaves a mottled " \
                               "appearance. "
         flower_name = "Sunflower"
-        prediction = (output[4] - __weight) * 100
-    elif output[5] >= 0.8:
+        prediction = output[4]
+    elif predicted_class[0] == 5:
         disease_name = "Root Rot"
         disease_description = "The infected plants show drooping of leaves and death occurs in patches."
         flower_name = "Sunflower"
-        prediction = (output[5] - __weight) * 100
+        prediction = output[5]
     else:
         disease_name = "Could not identify"
         disease_description = "Please try again"
